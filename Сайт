@@ -1,0 +1,316 @@
+/* styles.css */
+
+/* Основные стили и палитра: красный, зелёный, белый, крем */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fffaf0; /* кремовый фон */
+    color: #333;
+    line-height: 1.6;
+}
+
+header, footer {
+    background-color: #004d40; /* тёмно-зелёный */
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #e53935; /* ярко-красный при наведении */
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 1em 0;
+}
+
+h1, h2 {
+    font-family: 'Georgia', serif;
+    color: #b71c1c; /* насыщенный красный */
+}
+
+.menu-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 2em;
+    align-items: center;
+}
+
+.menu-item img {
+    max-width: 200px;
+    border-radius: 8px;
+}
+
+.menu-item div {
+    flex: 1;
+}
+
+form {
+    max-width: 400px;
+    margin-top: 1em;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    margin-top: 1em;
+    background-color: #b71c1c;
+    color: white;
+    border: none;
+    padding: 0.7em 1.5em;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e53935;
+}
+
+/* Кнопки для ссылок */
+a.btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+}
+
+a.btn-primary {
+    background-color: #b71c1c;
+    color: white;
+    text-decoration: none;
+}
+
+a.btn-primary:hover {
+    background-color: #e53935;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .menu-item img {
+        max-width: 100%;
+    }
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Итальянский Ресторан - Главная</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>Benvenuti! Добро пожаловать в наш итальянский ресторан</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="menu.html">Меню</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>О нашем ресторане</h2>
+            <p>Мы предлагаем аутентичные итальянские блюда, приготовленные по традиционным рецептам с использованием свежих ингредиентов и любви к кулинарии.</p>
+            <p>Наш минималистичный и уютный интерьер создаст атмосферу настоящей Италии.</p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Итальянский Ресторан
+    </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Итальянский Ресторан - Меню</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>Меню Итальянского Ресторана</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="menu.html">Меню</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section>
+            <article class="menu-item">
+                <img src="https://cdn.pixabay.com/photo/2016/11/18/16/53/pasta-1832614_960_720.jpg" alt="Паста Карбонара" />
+                <div>
+                    <h2>Паста Карбонара</h2>
+                    <p>Классическое паста блюдо с яйцами, пармезаном, гуанчале и свежемолотым черным перцем.</p>
+                </div>
+            </article>
+            <article class="menu-item">
+                <img src="https://cdn.pixabay.com/photo/2018/06/18/16/05/pizza-3482789_960_720.jpg" alt="Пицца Маргарита" />
+                <div>
+                    <h2>Пицца Маргарита</h2>
+                    <p>Тонкое тесто с томатным соусом, маццареллой, свежим базиликом и оливковым маслом.</p>
+                </div>
+            </article>
+            <article class="menu-item">
+                <img src="https://cdn.pixabay.com/photo/2017/06/02/18/24/tiramisu-2369946_960_720.jpg" alt="Тирамису" />
+                <div>
+                    <h2>Тирамису</h2>
+                    <p>Нежный десерт с маскарпоне, кофе и какао — классика итальянской кухни.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Итальянский Ресторан
+    </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Итальянский Ресторан - Меню</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>Меню Итальянского Ресторана</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="menu.html">Меню</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section>
+            <article class="menu-item">
+                <img src="https://cdn.pixabay.com/photo/2016/11/18/16/53/pasta-1832614_960_720.jpg" alt="Паста Карбонара" />
+                <div>
+                    <h2>Паста Карбонара</h2>
+                    <p>Классическое паста блюдо с яйцами, пармезаном, гуанчале и свежемолотым черным перцем.</p>
+                </div>
+            </article>
+            <article class="menu-item">
+                <img src="https://cdn.pixabay.com/photo/2018/06/18/16/05/pizza-3482789_960_720.jpg" alt="Пицца Маргарита" />
+                <div>
+                    <h2>Пицца Маргарита</h2>
+                    <p>Тонкое тесто с томатным соусом, маццареллой, свежим базиликом и оливковым маслом.</p>
+                </div>
+            </article>
+            <article class="menu-item">
+                <img src="https://cdn.pixabay.com/photo/2017/06/02/18/24/tiramisu-2369946_960_720.jpg" alt="Тирамису" />
+                <div>
+                    <h2>Тирамису</h2>
+                    <p>Нежный десерт с маскарпоне, кофе и какао — классика итальянской кухни.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Итальянский Ресторан
+    </footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Итальянский Ресторан - Контакты</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>Контакты Итальянского Ресторана</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="menu.html">Меню</a>
+            <a href="contacts.html">Контакты</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>Наш адрес</h2>
+            <p>ул. Итальянская, д. 10, Москва, Россия</p>
+            <p>Телефон: +7 495 123-45-67</p>
+            <h2>Где нас найти</h2>
+            <div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2244.095450086559!2d37.62039331593449!3d55.75582658055253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a178d7e3f63%3A0x50587b34316a4151!2sRed+Square%2C+Moscow!5e0!3m2!1sru!2sru!4v1537499746384"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <section>
+            <h2>Обратная связь</h2>
+            <form onsubmit="return validateForm()" novalidate>
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required placeholder="Ваше имя" />
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Ваш email" />
+                
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Ваше сообщение"></textarea>
+                
+                <button type="submit">Отправить</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Итальянский Ресторан
+    </footer>
+
+    <script>
+        // Простая проверка формы перед отправкой
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (!name || !email || !message) {
+                alert('Пожалуйста, заполните все поля формы.');
+                return false;
+            }
+            // Можно добавить проверку email регулярным выражением
+            return true;
+        }
+    </script>
+</body>
+</html>
+
