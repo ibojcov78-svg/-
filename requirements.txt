@@ -1,1 +1,3 @@
 notebooklm-py @ git+https://github.com/teng-lin/notebooklm-py.git
+anthropic
+playwright
