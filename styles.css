@@ -1,0 +1,118 @@
+/* styles.css */
+
+/* Основные стили и палитра: красный, зелёный, белый, крем */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fffaf0; /* кремовый фон */
+    color: #333;
+    line-height: 1.6;
+}
+
+header, footer {
+    background-color: #004d40; /* тёмно-зелёный */
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #e53935; /* ярко-красный при наведении */
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 1em 0;
+}
+
+h1, h2 {
+    font-family: 'Georgia', serif;
+    color: #b71c1c; /* насыщенный красный */
+}
+
+.menu-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-bottom: 2em;
+    align-items: center;
+}
+
+.menu-item img {
+    max-width: 200px;
+    border-radius: 8px;
+}
+
+.menu-item div {
+    flex: 1;
+}
+
+form {
+    max-width: 400px;
+    margin-top: 1em;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    margin-top: 1em;
+    background-color: #b71c1c;
+    color: white;
+    border: none;
+    padding: 0.7em 1.5em;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e53935;
+}
+
+/* Кнопки для ссылок */
+a.btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-weight: bold;
+    text-align: center;
+}
+
+a.btn-primary {
+    background-color: #b71c1c;
+    color: white;
+    text-decoration: none;
+}
+
+a.btn-primary:hover {
+    background-color: #e53935;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .menu-item img {
+        max-width: 100%;
+    }
+}
