@@ -12,6 +12,8 @@
         height: 1080px;
         overflow: hidden;
         background: #0a0a0a;
+        font-family: Impact, 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+        color: #fff;
       }
 
       #root {
@@ -22,7 +24,181 @@
         background: #0a0a0a;
       }
 
-      /* Flash cut overlay — instant access for hard cuts between scenes */
+      .scene {
+        position: absolute;
+        inset: 0;
+        background: #0a0a0a;
+      }
+
+      .scene-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 100px 160px;
+        gap: 28px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
+      }
+
+      .scene-content.centered {
+        align-items: center;
+        text-align: center;
+      }
+
+      /* ── decoratives ── */
+      .decor {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      /* ════ SCENE 1 ════ */
+      .s1-ghost {
+        font-size: 420px;
+        font-weight: 900;
+        color: rgba(255,215,0,0.038);
+        letter-spacing: -14px;
+        top: -30px;
+        left: -10px;
+        white-space: nowrap;
+        line-height: 1;
+      }
+      .s1-tag {
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: 16px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.55);
+      }
+      .s1-title {
+        font-size: 172px;
+        font-weight: 900;
+        color: #fff;
+        line-height: 0.87;
+        letter-spacing: -6px;
+        text-transform: uppercase;
+        will-change: transform;
+      }
+      .gold-rule { height: 4px; width: 0; background: #FFD700; }
+      .s1-subtitle {
+        font-size: 46px;
+        font-weight: 400;
+        color: #FFD700;
+        letter-spacing: 3px;
+      }
+
+      /* ════ SCENE 2 ════ */
+      #v-rule {
+        left: 120px; top: 80px; bottom: 80px;
+        width: 3px;
+        background: #FFD700;
+      }
+      .s2-label {
+        font-size: 22px;
+        font-weight: 900;
+        color: #FFD700;
+        letter-spacing: 16px;
+        text-transform: uppercase;
+      }
+      .bullet {
+        font-size: 50px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.2;
+        padding-left: 52px;
+        position: relative;
+      }
+      .bullet::before {
+        content: '—';
+        color: #FFD700;
+        position: absolute;
+        left: 0;
+      }
+
+      /* ════ SCENE 3 ════ */
+      .s3-glow {
+        width: 860px;
+        height: 860px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,215,0,0.07) 0%, transparent 68%);
+        top: calc(50% - 430px);
+        left: calc(50% - 430px);
+      }
+      .s3-stat {
+        font-size: 228px;
+        font-weight: 900;
+        color: #FFD700;
+        line-height: 0.85;
+        letter-spacing: -8px;
+        will-change: transform;
+        text-shadow: 0 0 90px rgba(255,215,0,0.32);
+      }
+      .s3-divider {
+        width: 300px;
+        height: 2px;
+        background: rgba(255,215,0,0.38);
+        margin: 4px auto;
+      }
+      .s3-label {
+        font-size: 56px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 7px;
+      }
+      .s3-note {
+        font-size: 30px;
+        font-weight: 400;
+        color: rgba(255,255,255,0.38);
+        font-style: italic;
+        margin-top: 4px;
+      }
+
+      /* ════ SCENE 4 ════ */
+      .s4-ghost {
+        font-size: 540px;
+        font-weight: 900;
+        color: rgba(255,215,0,0.028);
+        letter-spacing: -22px;
+        top: -60px;
+        right: -40px;
+        white-space: nowrap;
+        line-height: 1;
+      }
+      .s4-headline {
+        font-size: 148px;
+        font-weight: 900;
+        color: #fff;
+        line-height: 0.87;
+        text-transform: uppercase;
+        letter-spacing: -4px;
+        will-change: transform;
+      }
+      .s4-rule { height: 3px; width: 0; background: rgba(255,215,0,0.55); }
+      .s4-subtitle {
+        font-size: 58px;
+        font-weight: 400;
+        color: #FFD700;
+        letter-spacing: 5px;
+      }
+      .logo {
+        position: absolute;
+        bottom: 72px; right: 120px;
+        z-index: 3;
+        font-size: 20px;
+        font-weight: 900;
+        color: #FFD700;
+        letter-spacing: 11px;
+        text-transform: uppercase;
+        border: 2px solid #FFD700;
+        padding: 14px 28px;
+      }
+
+      /* ── flash cut overlay ── */
       #flash {
         position: absolute;
         inset: 0;
@@ -43,83 +219,99 @@
       data-width="1920"
       data-height="1080"
     >
-      <!-- Flash cut overlay -->
       <div id="flash"></div>
 
-      <!-- Scene 1 · 0–3s -->
-      <div
-        id="host-scene1"
-        class="clip"
-        data-composition-id="scene1"
-        data-composition-src="compositions/scene1.html"
-        data-start="0"
-        data-duration="3"
-        data-track-index="1"
-      ></div>
+      <!-- SCENE 1 · 0–3s -->
+      <div id="scene1" class="scene clip" data-start="0" data-duration="3" data-track-index="1">
+        <div class="decor s1-ghost" aria-hidden="true">СИТИ</div>
+        <div class="scene-content">
+          <div class="s1-tag">Москва · 2025</div>
+          <div class="s1-title">МОСКВА-<br>СИТИ</div>
+          <div class="gold-rule" id="rule1"></div>
+          <div class="s1-subtitle">где деньги ночуют вверх ногами</div>
+        </div>
+      </div>
 
-      <!-- Scene 2 · 3–8s -->
-      <div
-        id="host-scene2"
-        class="clip"
-        data-composition-id="scene2"
-        data-composition-src="compositions/scene2.html"
-        data-start="3"
-        data-duration="5"
-        data-track-index="1"
-      ></div>
+      <!-- SCENE 2 · 3–8s -->
+      <div id="scene2" class="scene clip" data-start="3" data-duration="5" data-track-index="1">
+        <div class="decor" id="v-rule"></div>
+        <div class="scene-content" style="padding-left:200px;">
+          <div class="s2-label">правила входа</div>
+          <div class="bullet b1">дресс-код: «ты в порядке?» — не для тебя</div>
+          <div class="bullet b2">вход — по лицу, по связям, по случайности</div>
+          <div class="bullet b3">выход — утром, с чужим номером</div>
+        </div>
+      </div>
 
-      <!-- Scene 3 · 8–15s -->
-      <div
-        id="host-scene3"
-        class="clip"
-        data-composition-id="scene3"
-        data-composition-src="compositions/scene3.html"
-        data-start="8"
-        data-duration="7"
-        data-track-index="1"
-      ></div>
+      <!-- SCENE 3 · 8–15s -->
+      <div id="scene3" class="scene clip" data-start="8" data-duration="7" data-track-index="1">
+        <div class="decor s3-glow"></div>
+        <div class="scene-content centered">
+          <div class="s3-stat">₽80 000</div>
+          <div class="s3-divider"></div>
+          <div class="s3-label">средний чек за ночь</div>
+          <div class="s3-note">(и это без бутылки)</div>
+        </div>
+      </div>
 
-      <!-- Scene 4 · 15–20s -->
-      <div
-        id="host-scene4"
-        class="clip"
-        data-composition-id="scene4"
-        data-composition-src="compositions/scene4.html"
-        data-start="15"
-        data-duration="5"
-        data-track-index="1"
-      ></div>
+      <!-- SCENE 4 · 15–20s -->
+      <div id="scene4" class="scene clip" data-start="15" data-duration="5" data-track-index="1">
+        <div class="decor s4-ghost" aria-hidden="true">КИНО</div>
+        <div class="scene-content">
+          <div class="s4-headline">ВСЁ КАК<br>В КИНО</div>
+          <div class="s4-rule" id="rule4"></div>
+          <div class="s4-subtitle">только платишь ты</div>
+        </div>
+        <div class="logo">МСК ✦</div>
+      </div>
     </div>
 
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      /*
-        Root timeline orchestrates only the hard-cut flashes between scenes.
-        Each scene's internal animation is handled by its own sub-composition timeline.
+      /* ── SCENE 1 · 0–3s ── */
+      tl.from(".s1-tag",      { autoAlpha: 0, y: 16,   duration: 0.38, ease: "sine.out" },   0.12);
+      tl.from(".s1-title",    { y: -370,                duration: 0.22, ease: "power4.out" }, 0.18);
+      tl.fromTo("#flash",     { autoAlpha: 0.88 }, { autoAlpha: 0, duration: 0.32, ease: "power2.out" }, 0.34);
+      tl.to(".s1-title",      { x: 14,  duration: 0.04 }, 0.40);
+      tl.to(".s1-title",      { x: -9,  duration: 0.04 }, 0.44);
+      tl.to(".s1-title",      { x: 0,   duration: 0.06 }, 0.48);
+      tl.to("#rule1",         { width: 280, duration: 0.48, ease: "expo.out" },               0.45);
+      tl.from(".s1-subtitle", { autoAlpha: 0, y: 22,   duration: 0.55, ease: "power3.out" }, 0.70);
 
-        Scene 1 impact flash is orchestrated here so the overlay sits above
-        all sub-composition layers (z-index: 200).
-      */
+      /* ── CUT → SCENE 2 · t=3s ── */
+      tl.fromTo("#flash",     { autoAlpha: 0.55 }, { autoAlpha: 0, duration: 0.14, ease: "none" }, 3.00);
+      tl.from("#v-rule",      { scaleY: 0, transformOrigin: "top center", duration: 0.42, ease: "power3.out", immediateRender: false }, 3.12);
+      tl.from(".s2-label",    { autoAlpha: 0, x: -44,  duration: 0.22, ease: "expo.out",   immediateRender: false }, 3.18);
+      tl.from(".b1",          { autoAlpha: 0, x: -108, duration: 0.26, ease: "power4.out", immediateRender: false }, 3.55);
+      tl.from(".b2",          { autoAlpha: 0, x: -108, duration: 0.26, ease: "power4.out", immediateRender: false }, 3.85);
+      tl.from(".b3",          { autoAlpha: 0, x: -108, duration: 0.26, ease: "power4.out", immediateRender: false }, 4.15);
 
-      // Scene 1 — impact flash after title smash (local offset 0.34s → global 0.34s)
-      tl.fromTo("#flash", { autoAlpha: 0.88 }, { autoAlpha: 0, duration: 0.32, ease: "power2.out" }, 0.34);
+      /* ── CUT → SCENE 3 · t=8s ── */
+      tl.fromTo("#flash",     { autoAlpha: 0.72 }, { autoAlpha: 0, duration: 0.14, ease: "none" },      8.00);
+      tl.from(".s3-stat",     { y: 260, autoAlpha: 0,  duration: 0.26, ease: "power4.out", immediateRender: false }, 8.14);
+      tl.to(".s3-stat",       { scale: 1.065, duration: 0.10, ease: "power1.out" },  8.38);
+      tl.to(".s3-stat",       { scale: 1,     duration: 0.20, ease: "power2.out" },  8.48);
+      tl.fromTo("#flash",     { autoAlpha: 0.30 }, { autoAlpha: 0, duration: 0.22, ease: "power2.out" }, 8.38);
+      tl.from(".s3-divider",  { scaleX: 0, transformOrigin: "center center", duration: 0.34, ease: "expo.out", immediateRender: false }, 8.58);
+      tl.from(".s3-label",    { autoAlpha: 0, y: 34,   duration: 0.38, ease: "power3.out", immediateRender: false }, 8.68);
+      tl.from(".s3-note",     { autoAlpha: 0,           duration: 0.65, ease: "sine.out",  immediateRender: false }, 9.35);
+      tl.to(".s3-stat",       { scale: 1.022, duration: 0.55, repeat: 4, yoyo: true, ease: "sine.inOut" }, 11.20);
 
-      // Cut → Scene 2 at t=3s
-      tl.fromTo("#flash", { autoAlpha: 0.55 }, { autoAlpha: 0, duration: 0.14, ease: "none" }, 3.00);
+      /* ── CUT → SCENE 4 · t=15s ── */
+      tl.fromTo("#flash",     { autoAlpha: 0.88 }, { autoAlpha: 0, duration: 0.14, ease: "none" },       15.00);
+      tl.from(".s4-headline", { y: -290, autoAlpha: 0, duration: 0.24, ease: "power4.out", immediateRender: false }, 15.14);
+      tl.fromTo("#flash",     { autoAlpha: 0.40 }, { autoAlpha: 0, duration: 0.26, ease: "power2.out" }, 15.32);
+      tl.to(".s4-headline",   { x: 18,  duration: 0.04 }, 15.38);
+      tl.to(".s4-headline",   { x: -13, duration: 0.04 }, 15.42);
+      tl.to(".s4-headline",   { x: 6,   duration: 0.04 }, 15.46);
+      tl.to(".s4-headline",   { x: 0,   duration: 0.05 }, 15.50);
+      tl.to("#rule4",         { width: 220, duration: 0.42, ease: "expo.out" },                           15.48);
+      tl.from(".s4-subtitle", { autoAlpha: 0, x: 80,   duration: 0.40, ease: "expo.out",   immediateRender: false }, 15.68);
+      tl.from(".logo",        { autoAlpha: 0, scale: 0.72, duration: 0.52, ease: "back.out(1.7)", immediateRender: false }, 16.18);
+      tl.to(".s4-headline",   { scale: 1.016, duration: 0.48, repeat: 4, yoyo: true, ease: "sine.inOut" }, 17.10);
 
-      // Scene 3 stat impact flash (local offset 0.38s → global 8.38s)
-      tl.fromTo("#flash", { autoAlpha: 0.72 }, { autoAlpha: 0, duration: 0.14, ease: "none" }, 8.00);
-      tl.fromTo("#flash", { autoAlpha: 0.30 }, { autoAlpha: 0, duration: 0.22, ease: "power2.out" }, 8.38);
-
-      // Cut → Scene 4 at t=15s (hardest — climax)
-      tl.fromTo("#flash", { autoAlpha: 0.88 }, { autoAlpha: 0, duration: 0.14, ease: "none" }, 15.00);
-
-      // Scene 4 impact flash
-      tl.fromTo("#flash", { autoAlpha: 0.40 }, { autoAlpha: 0, duration: 0.26, ease: "power2.out" }, 15.32);
-
-      // Sentinel
       tl.set({}, {}, 20);
 
       window.__timelines["moscow-night"] = tl;
