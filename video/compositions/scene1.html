@@ -1,0 +1,126 @@
+<!-- Scene 1 · [0–3s] · МОСКВА-СИТИ smash entrance -->
+<template id="scene1-template">
+  <div data-composition-id="scene1" data-width="1920" data-height="1080">
+    <style>
+      #scene1 {
+        position: absolute;
+        inset: 0;
+        background: #0a0a0a;
+        font-family: 'Arial Black', Impact, 'Helvetica Neue', Arial, sans-serif;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      #scene1 .decor {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      #scene1 .s1-ghost {
+        font-size: 420px;
+        font-weight: 900;
+        color: rgba(255, 215, 0, 0.038);
+        letter-spacing: -14px;
+        top: -30px;
+        left: -10px;
+        white-space: nowrap;
+        line-height: 1;
+      }
+
+      #scene1 .scene-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 100px 160px;
+        gap: 28px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
+      }
+
+      #scene1 .s1-tag {
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: 16px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      #scene1 .s1-title {
+        font-size: 172px;
+        font-weight: 900;
+        color: #fff;
+        line-height: 0.87;
+        letter-spacing: -6px;
+        text-transform: uppercase;
+        will-change: transform;
+      }
+
+      #scene1 .gold-rule {
+        height: 4px;
+        width: 0;
+        background: #FFD700;
+      }
+
+      #scene1 .s1-subtitle {
+        font-size: 46px;
+        font-weight: 400;
+        color: #FFD700;
+        letter-spacing: 3px;
+      }
+    </style>
+
+    <div class="decor s1-ghost" aria-hidden="true">СИТИ</div>
+
+    <div class="scene-content">
+      <div class="s1-tag">Москва · 2025</div>
+      <div class="s1-title">МОСКВА-<br>СИТИ</div>
+      <div class="gold-rule" id="s1-rule"></div>
+      <div class="s1-subtitle">где деньги ночуют вверх ногами</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Tag drifts up — context before the hit
+      tl.fromTo(".s1-tag",
+        { autoAlpha: 0, y: 16 },
+        { autoAlpha: 1, y: 0, duration: 0.38, ease: "sine.out" },
+        0.12
+      );
+
+      // Title smashes from top — power4 = weight
+      tl.fromTo(".s1-title",
+        { y: -370 },
+        { y: 0, duration: 0.22, ease: "power4.out" },
+        0.18
+      );
+
+      // Recoil shake
+      tl.to(".s1-title", { x: 14,  duration: 0.04 }, 0.40);
+      tl.to(".s1-title", { x: -9,  duration: 0.04 }, 0.44);
+      tl.to(".s1-title", { x: 0,   duration: 0.06 }, 0.48);
+
+      // Gold rule sweeps right
+      tl.to("#s1-rule", { width: 280, duration: 0.48, ease: "expo.out" }, 0.45);
+
+      // Subtitle drifts up — breathe after impact
+      tl.fromTo(".s1-subtitle",
+        { autoAlpha: 0, y: 22 },
+        { autoAlpha: 1, y: 0, duration: 0.55, ease: "power3.out" },
+        0.70
+      );
+
+      // Sentinel
+      tl.set({}, {}, 3);
+
+      window.__timelines["scene1"] = tl;
+    </script>
+  </div>
+</template>

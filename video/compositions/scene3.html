@@ -1,0 +1,134 @@
+<!-- Scene 3 · [8–15s] · Stat slam + breathe -->
+<template id="scene3-template">
+  <div data-composition-id="scene3" data-width="1920" data-height="1080">
+    <style>
+      #scene3 {
+        position: absolute;
+        inset: 0;
+        background: #0a0a0a;
+        font-family: 'Arial Black', Impact, 'Helvetica Neue', Arial, sans-serif;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      #scene3 .decor {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      #scene3 .s3-glow {
+        width: 860px;
+        height: 860px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 215, 0, 0.07) 0%, transparent 68%);
+        top: calc(50% - 430px);
+        left: calc(50% - 430px);
+      }
+
+      #scene3 .scene-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        padding: 100px 160px;
+        gap: 20px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
+      }
+
+      #scene3 .s3-stat {
+        font-size: 228px;
+        font-weight: 900;
+        color: #FFD700;
+        line-height: 0.85;
+        letter-spacing: -8px;
+        will-change: transform;
+        text-shadow: 0 0 90px rgba(255, 215, 0, 0.32);
+      }
+
+      #scene3 .s3-divider {
+        width: 300px;
+        height: 2px;
+        background: rgba(255, 215, 0, 0.38);
+        margin: 4px auto;
+      }
+
+      #scene3 .s3-label {
+        font-size: 56px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 7px;
+      }
+
+      #scene3 .s3-note {
+        font-size: 30px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.38);
+        font-style: italic;
+        letter-spacing: 1px;
+        margin-top: 4px;
+      }
+    </style>
+
+    <div class="decor s3-glow"></div>
+
+    <div class="scene-content">
+      <div class="s3-stat">₽80 000</div>
+      <div class="s3-divider"></div>
+      <div class="s3-label">средний чек за ночь</div>
+      <div class="s3-note">(и это без бутылки)</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Stat slams up from below
+      tl.fromTo(".s3-stat",
+        { y: 260, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.26, ease: "power4.out" },
+        0.14
+      );
+
+      // Scale punch on landing
+      tl.to(".s3-stat", { scale: 1.065, duration: 0.10, ease: "power1.out" }, 0.38);
+      tl.to(".s3-stat", { scale: 1,     duration: 0.20, ease: "power2.out" }, 0.48);
+
+      // Divider sweeps from center
+      tl.fromTo(".s3-divider",
+        { scaleX: 0, transformOrigin: "center center" },
+        { scaleX: 1, duration: 0.34, ease: "expo.out" },
+        0.58
+      );
+
+      // Label slides up
+      tl.fromTo(".s3-label",
+        { autoAlpha: 0, y: 34 },
+        { autoAlpha: 1, y: 0, duration: 0.38, ease: "power3.out" },
+        0.68
+      );
+
+      // Note drifts in — breathe moment, opacity only
+      tl.fromTo(".s3-note",
+        { autoAlpha: 0 },
+        { autoAlpha: 1, duration: 0.65, ease: "sine.out" },
+        1.35
+      );
+
+      // Ambient heartbeat — finite 4 cycles
+      tl.to(".s3-stat", { scale: 1.022, duration: 0.55, repeat: 4, yoyo: true, ease: "sine.inOut" }, 3.2);
+
+      // Sentinel
+      tl.set({}, {}, 7);
+
+      window.__timelines["scene3"] = tl;
+    </script>
+  </div>
+</template>

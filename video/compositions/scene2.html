@@ -1,0 +1,117 @@
+<!-- Scene 2 · [3–8s] · Bullet cascade -->
+<template id="scene2-template">
+  <div data-composition-id="scene2" data-width="1920" data-height="1080">
+    <style>
+      #scene2 {
+        position: absolute;
+        inset: 0;
+        background: #0a0a0a;
+        font-family: 'Arial Black', Impact, 'Helvetica Neue', Arial, sans-serif;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      #scene2 .decor {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      #scene2 #v-rule {
+        left: 120px;
+        top: 80px;
+        bottom: 80px;
+        width: 3px;
+        background: #FFD700;
+      }
+
+      #scene2 .scene-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 100px 160px 100px 200px;
+        gap: 36px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 2;
+      }
+
+      #scene2 .s2-label {
+        font-size: 22px;
+        font-weight: 900;
+        color: #FFD700;
+        letter-spacing: 16px;
+        text-transform: uppercase;
+      }
+
+      #scene2 .bullet {
+        font-size: 50px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.2;
+        padding-left: 52px;
+        position: relative;
+      }
+
+      #scene2 .bullet::before {
+        content: '—';
+        color: #FFD700;
+        position: absolute;
+        left: 0;
+      }
+    </style>
+
+    <div class="decor" id="v-rule"></div>
+
+    <div class="scene-content">
+      <div class="s2-label">правила входа</div>
+      <div class="bullet b1">дресс-код: «ты в порядке?» — не для тебя</div>
+      <div class="bullet b2">вход — по лицу, по связям, по случайности</div>
+      <div class="bullet b3">выход — утром, с чужим номером</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // Vertical border draws down
+      tl.fromTo("#v-rule",
+        { scaleY: 0, transformOrigin: "top center" },
+        { scaleY: 1, duration: 0.42, ease: "power3.out" },
+        0.12
+      );
+
+      // Label — expo for sharpness
+      tl.fromTo(".s2-label",
+        { autoAlpha: 0, x: -44 },
+        { autoAlpha: 1, x: 0, duration: 0.22, ease: "expo.out" },
+        0.18
+      );
+
+      // Bullets — 0.3s stagger, power4 = aggressive
+      tl.fromTo(".b1",
+        { autoAlpha: 0, x: -108 },
+        { autoAlpha: 1, x: 0, duration: 0.26, ease: "power4.out" },
+        0.55
+      );
+      tl.fromTo(".b2",
+        { autoAlpha: 0, x: -108 },
+        { autoAlpha: 1, x: 0, duration: 0.26, ease: "power4.out" },
+        0.85
+      );
+      tl.fromTo(".b3",
+        { autoAlpha: 0, x: -108 },
+        { autoAlpha: 1, x: 0, duration: 0.26, ease: "power4.out" },
+        1.15
+      );
+
+      // Sentinel
+      tl.set({}, {}, 5);
+
+      window.__timelines["scene2"] = tl;
+    </script>
+  </div>
+</template>
