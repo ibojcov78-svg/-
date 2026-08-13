@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бойцов Игорь — Копирайтер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #0D0C0A;
+    --surface: #141210;
+    --card:    #1A1814;
+    --border:  #2A2620;
+    --ink:     #EDE9E2;
+    --mid:     #8A8278;
+    --dim:     #4A4640;
+    --gold:    #C9A96E;
+    --gold2:   #E8C990;
+    --col:     700px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    background: rgba(13, 12, 10, 0.9);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+
+  nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-name:hover { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  #hero {
+    padding: 170px 0 110px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    right: -4vw;
+    top: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30vw;
+    color: rgba(201, 169, 110, 0.03);
+    line-height: 1;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+  }
+
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 9vw, 88px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-bio {
+    font-size: 15px;
+    color: var(--mid);
+    max-width: 460px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  /* ── SECTION LABEL ───────────────────────────────────── */
+  .sec-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 44px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sec-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+
+  section {
+    padding: 88px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  /* ── SKILLS ──────────────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-item {
+    background: var(--card);
+    padding: 24px 28px;
+    transition: background 0.2s;
+  }
+  .skill-item:hover { background: #201E18; }
+
+  .skill-num {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .skill-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .skill-desc {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  /* ── EXPERIENCE ──────────────────────────────────────── */
+  .exp-block {
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    gap: 16px;
+  }
+
+  .exp-company {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .exp-company:hover { color: var(--gold); }
+
+  .exp-company-arrow {
+    font-size: 14px;
+    color: var(--dim);
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .exp-company:hover .exp-company-arrow {
+    color: var(--gold);
+    transform: translate(3px, -3px);
+  }
+
+  .exp-period {
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+    margin-top: 6px;
+  }
+
+  .exp-role {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .exp-text {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .exp-highlights { list-style: none; }
+
+  .exp-highlights li {
+    font-size: 13.5px;
+    color: var(--mid);
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
+    line-height: 1.65;
+  }
+
+  .exp-highlights li::before {
+    content: '—';
+    color: var(--dim);
+    font-size: 12px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Акцент на ссылках в опыте */
+  .exp-highlights a {
+    color: var(--gold2);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 201, 144, 0.28);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+    font-weight: 400;
+  }
+
+  .exp-highlights a:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.45);
+  }
+
+  /* ── PUBLICATIONS ────────────────────────────────────── */
+  .pub-list { list-style: none; }
+
+  .pub-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .pub-item:first-child { border-top: 1px solid var(--border); }
+
+  .pub-source {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding-top: 3px;
+  }
+
+  /* Акцент на публикациях */
+  .pub-title {
+    font-size: 14px;
+    color: var(--gold2);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232, 201, 144, 0.22);
+    padding-bottom: 1px;
+    line-height: 1.55;
+    transition: color 0.2s, border-color 0.2s;
+    font-weight: 400;
+  }
+
+  .pub-title:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  /* ── PORTFOLIO ───────────────────────────────────────── */
+  .portfolio-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.25s, background 0.25s;
+    gap: 20px;
+  }
+
+  .portfolio-link:hover {
+    border-color: var(--gold);
+    background: #1E1C16;
+  }
+
+  .portfolio-link-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .portfolio-link-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .portfolio-link-desc {
+    font-size: 12px;
+    color: var(--mid);
+  }
+
+  .portfolio-arrow-box {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 17px;
+    flex-shrink: 0;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+
+  .portfolio-link:hover .portfolio-arrow-box {
+    border-color: var(--gold);
+    background: rgba(201,169,110,0.08);
+    transform: translate(2px,-2px);
+  }
+
+  /* ── CONTACT ─────────────────────────────────────────── */
+  #contact { padding-bottom: 120px; }
+
+  .contact-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 6vw, 54px);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 48px;
+    color: var(--ink);
+  }
+
+  .contact-line em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .contact-tg {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 16px 32px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+
+  .contact-tg:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,169,110,0.05);
+  }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SEO CARDS ───────────────────────────────────────── */
+  .seo-sublabel {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .seo-sublabel::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .seo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .seo-card {
+    background: var(--card);
+    padding: 20px 22px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+
+  .seo-card:hover { background: #201E18; }
+
+  .seo-card-source {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  .seo-card-title {
+    font-size: 13px;
+    color: var(--gold2);
+    line-height: 1.55;
+    border-bottom: 1px solid rgba(232,201,144,0.22);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .seo-card:hover .seo-card-title {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 600px) {
+    .seo-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATIONS ──────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── MOBILE ──────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .nav-links { gap: 18px; }
+    #hero { padding: 140px 0 80px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .exp-header { flex-direction: column; gap: 4px; }
+    .pub-item { grid-template-columns: 1fr; gap: 4px; }
+    .portfolio-link { flex-direction: column; align-items: flex-start; }
+    footer .wrap { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <a href="#hero" class="nav-name">Бойцов Игорь</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Навыки</a></li>
+      <li><a href="#experience">Опыт</a></li>
+      <li><a href="#portfolio">Портфолио</a></li>
+      <li><a href="#contact">Контакт</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-bg-text" aria-hidden="true">И</div>
+    <p class="hero-label">Копирайтер · SEO-редактор</p>
+    <h1>Бойцов<br><em>Игорь</em></h1>
+    <p class="hero-bio">3 года пишу тексты, которые читают люди и находят поисковики. Работаю на стыке журналистики, SEO и контент-маркетинга. Санкт-Петербург.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <p class="sec-label reveal">Что умею</p>
+    <div class="skills-grid">
+      <div class="skill-item reveal">
+        <span class="skill-num">01</span>
+        <div class="skill-name">Контент для СМИ</div>
+        <div class="skill-desc">Питчинг и публикации в федеральных медиа без рекламного бюджета</div>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-num">02</span>
+        <div class="skill-name">SEO-копирайтинг</div>
+        <div class="skill-desc">Статьи от 8 000 знаков, мета-теги, уникальность 95%+, публикация в WordPress</div>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-num">03</span>
+        <div class="skill-name">Перформанс-копирайтинг</div>
+        <div class="skill-desc">Объявления для Яндекс.Директ и таргета ВКонтакте по Лестнице Ханта</div>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-num">04</span>
+        <div class="skill-name">Продуктовый копирайтинг</div>
+        <div class="skill-desc">Перевод технических характеристик в выгоды для покупателя</div>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-num">05</span>
+        <div class="skill-name">SMM / Telegram</div>
+        <div class="skill-desc">Посты, воронки продаж, сценарии для коротких видео</div>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-num">06</span>
+        <div class="skill-name">Email-рассылки</div>
+        <div class="skill-desc">Дайджесты, прогревы, триггерные цепочки</div>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-num">07</span>
+        <div class="skill-name">Редактура</div>
+        <div class="skill-desc">Фактчекинг, инфостиль, редакционные стандарты для команды</div>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-num">08</span>
+        <div class="skill-name">AI-инструменты</div>
+        <div class="skill-desc">Claude, ChatGPT · Главред · Тургенев</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <p class="sec-label reveal">Опыт</p>
+
+    <div class="exp-block reveal">
+      <div class="exp-header">
+        <a href="https://glabix.com/" target="_blank" class="exp-company">
+          Глабикс <span class="exp-company-arrow">↗</span>
+        </a>
+        <span class="exp-period">2024 — 2026</span>
+      </div>
+      <p class="exp-role">Копирайтер · PR-специалист</p>
+      <p class="exp-text">Писал аналитические статьи для федеральных СМИ, брал интервью у экспертов, питчил материалы без рекламного бюджета.</p>
+      <ul class="exp-highlights">
+        <li>20+ публикаций —
+          <a href="https://www.sostav.ru/publication/zumery-ne-terpyat-pererabotok-i-zvonkov-v-vykhodnye-chto-eto-znachit-dlya-tsifrovykh-komand-81308.html" target="_blank">Sostav</a>,
+          <a href="https://hightech.fm/2025/11/09/ai-fail" target="_blank">Хайтек</a>,
+          <a href="https://secrets.tbank.ru/blogi-kompanij/kak-ii-preobrazuet-biznes/" target="_blank">Бизнес-секреты</a>,
+          <a href="https://biz360.ru/materials/chem-proshche-tem-luchshe-kakie-uroki-vynes-it-startap-prokhodya-neprostoy-put-masshtabirovaniya" target="_blank">Biz360</a>,
+          <a href="https://www.cossa.ru/152/345999/" target="_blank">Cossa</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="exp-block reveal">
+      <div class="exp-header">
+        <a href="https://weisan.ru/?ysclid=msolviq0fx975805151" target="_blank" class="exp-company">
+          WEISAN <span class="exp-company-arrow">↗</span>
+        </a>
+        <span class="exp-period">2026 — н.в.</span>
+      </div>
+      <p class="exp-role">Копирайтер · Контент-маркетолог</p>
+      <p class="exp-text">Интернет-магазин настольных токарных и фрезерных станков. Отвечаю за контент по всей воронке — от SEO и товарных карточек до рекламных кампаний и сценария чат-бота.</p>
+      <ul class="exp-highlights">
+        <li>18 <a href="https://docs.google.com/document/d/1VzdsLjgIvgiYS41AH8NSx_B0ZBt7p91L5WxmOwwqKsg/edit" target="_blank">товарных описаний станков</a> и 52 пары <a href="https://docs.google.com/spreadsheets/d/1OowNML0ltr9kfkMLBGhXW2Spn8qvk1bB0Q-6ju2T53c/edit" target="_blank">SEO-тегов Title и Description</a></li>
+        <li>16 объявлений <a href="https://docs.google.com/document/d/1jvk2t8-KrX1KScY1oiCg66RSqS-S53iQsebTrCvOr6E/edit" target="_blank">Яндекс.Директ</a> — Поиск и РСЯ; таргет ВКонтакте: <a href="https://docs.google.com/document/d/1lUY7B2MaLknKm2gXJsDYQkRmcivpwajbeh5ZeJHpOmo/edit" target="_blank">холодная воронка</a> и <a href="https://docs.google.com/document/d/1DBNaMKUWjBTrF8kUdGhWyQyGtpwv2mRNGVADysL61RY/edit" target="_blank">ретаргетинг</a></li>
+        <li>7-этапный сценарий чат-бота с квизом и <a href="https://docs.google.com/document/d/1FIWSaHBICScal8blYWku0Jl2l9qcE1TG8TRDLe44FDU/edit" target="_blank">39 пар вопрос-ответ для FAQ</a></li>
+        <li>Лонгриды о продукте — <a href="https://docs.google.com/document/d/1U5xy9uJh3xyZ5h5hzYtcPnAyQW6Qu4-9NCuLcTXkd0k/edit" target="_blank">серии станков</a>, <a href="https://docs.google.com/document/d/148kcrd2twcJB2InP-KleiM1MgzSv8kaWJNxM_ROGUNI/edit" target="_blank">шпиндель</a>, <a href="https://docs.google.com/document/d/1J56HCiPf55tvJFyepb2qtf39XjpD4mau7sHl3AjQtOA/edit" target="_blank">УЦИ</a></li>
+        <li>Свёл повторяющиеся правки в единый редакционный стандарт компании</li>
+      </ul>
+    </div>
+
+    <div class="exp-block reveal">
+      <div class="exp-header">
+        <a href="https://thegateagency.ru/" target="_blank" class="exp-company">
+          PR-агентство Gate <span class="exp-company-arrow">↗</span>
+        </a>
+        <span class="exp-period">2024 — 2025</span>
+      </div>
+      <p class="exp-role">Копирайтер</p>
+      <p class="exp-text">Работал с клиентами агентства: собирал фактуру, писал статьи, размещал в профильных изданиях.</p>
+      <ul class="exp-highlights">
+        <li><a href="https://hightech.fm/2025/03/21/anti-fraud-2025" target="_blank">Хайтек — Рекламный фрод: новые схемы обмана и технологии защиты</a></li>
+        <li><a href="https://www.it-world.ru/security/qvhdfdr5rpc0ok0sso4cgowg4gw8goc.html" target="_blank">IT World — Машинное обучение в борьбе с мошенничеством</a></li>
+        <li><a href="https://biz360.ru/materials/biznes-bez-granits-kak-vyvesti-svoy-produkt-na-mezhdunarodnyy-rynok/" target="_blank">Biz360 — Бизнес без границ: выход на международный рынок</a></li>
+        <li><a href="https://secrets.tbank.ru/blogi-kompanij/sozdanie-ekipirovki-novogo-pokoleniya/" target="_blank">Бизнес-секреты — Создание экипировки нового поколения</a></li>
+      </ul>
+    </div>
+
+    <div class="exp-block reveal">
+      <div class="exp-header">
+        <span class="exp-company" style="cursor:default; pointer-events:none;">Контент-маркетинг</span>
+        <span class="exp-period">2022 — 2024</span>
+      </div>
+      <p class="exp-role">Копирайтер · SMM</p>
+      <p class="exp-text">Разные ниши: образование, здоровье, трейдинг, зарубежная недвижимость.</p>
+      <ul class="exp-highlights">
+        <li>City Business School —
+          <a href="https://t.me/CityBusinessSchool/1320" target="_blank">Telegram-посты</a>,
+          <a href="https://docs.google.com/document/d/1k_Bw59dd8BKup1aZO0wF0fL1pf9TJoVEwFu1gm7pzAI/edit" target="_blank">email-рассылки</a>,
+          <a href="https://docs.google.com/document/d/1uB7mcZHDeLMD4qjO5pEh9uI2JgZ-mXMLtx0K0kL-pPY/edit" target="_blank">статьи</a>
+        </li>
+        <li>БИОпсихосоматика —
+          <a href="https://t.me/mikeda_bps/1352" target="_blank">Telegram-посты</a>,
+          <a href="https://docs.google.com/document/d/1EvPMvbjqHlc4If70MRbmmYTaCVJ5VSYtNd56NvZAuWg/edit" target="_blank">сценарии для видео</a>
+        </li>
+        <li><a href="https://t.me/katya_medushkina_fit/9504" target="_blank">Катя Медушкина</a> —
+          Telegram-посты,
+          <a href="https://docs.google.com/document/d/1VuXWCETH7Bz6Q-y-U04qmNj66HHzx_sAcNOmAoDTSHs/edit" target="_blank">тексты для чат-ботов</a>
+        </li>
+        <li>Imperial Estate Invest —
+          <a href="https://docs.google.com/document/d/1Dudrs5P8QWgoAqFAJyagnU3hl9khmpff2NK42sXmD1w/edit" target="_blank">недвижимость в Дубае</a>,
+          <a href="https://docs.google.com/document/d/1bkex0bgAuDUF0V75RPwc5Ugsk60SS60IUo3rzuoUoCM/edit" target="_blank">ВНЖ на Кипре</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SEO-статьи -->
+    <div class="exp-block reveal">
+      <div class="exp-header">
+        <span class="exp-company" style="cursor:default; pointer-events:none;">SEO-статьи</span>
+      </div>
+      <p class="exp-role">Глабикс · Mail.ru · от 8 000 знаков · уникальность 95%+</p>
+
+      <p class="seo-sublabel">Глабикс — корпоративный блог</p>
+      <div class="seo-grid">
+        <a href="https://glabix.com/articles/skvoznye-processy-v-kompanii-chto-eto-vidy-i-primery-iz-biznesa" target="_blank" class="seo-card">
+          <div class="seo-card-source">Менеджмент</div>
+          <div class="seo-card-title">Сквозные процессы в компании: что это, виды и примеры</div>
+        </a>
+        <a href="https://glabix.com/articles/upravlencheskij-cikl-organizacii-ot-strategicheskogo-planirovaniya-do-operativnogo-kontrolya" target="_blank" class="seo-card">
+          <div class="seo-card-source">Управление</div>
+          <div class="seo-card-title">Управленческий цикл: от стратегического планирования до оперативного контроля</div>
+        </a>
+        <a href="https://glabix.com/articles/chto-takoe-kommunikacionnaya-nagruzka-i-pochemu-ona-vedet-k-vygoraniyu-sotrudnikov" target="_blank" class="seo-card">
+          <div class="seo-card-source">HR</div>
+          <div class="seo-card-title">Что такое коммуникационная нагрузка и почему она ведёт к выгоранию</div>
+        </a>
+        <a href="https://glabix.com/articles/kak-pravilno-rasstavljat-prioritety-v-rabote-principy-i-instrumenty" target="_blank" class="seo-card">
+          <div class="seo-card-source">Продуктивность</div>
+          <div class="seo-card-title">Как правильно расставлять приоритеты в работе: принципы и инструменты</div>
+        </a>
+        <a href="https://glabix.com/articles/organizacionnoe-upravlenie-chto-eto-i-kak-ono-vliyaet-na-uspeh-kompanii" target="_blank" class="seo-card">
+          <div class="seo-card-source">Менеджмент</div>
+          <div class="seo-card-title">Организационное управление: что это и как влияет на успех компании</div>
+        </a>
+        <a href="https://glabix.com/articles/reglament-raboty-chto-eto-i-kak-ego-sostavit" target="_blank" class="seo-card">
+          <div class="seo-card-source">Бизнес-процессы</div>
+          <div class="seo-card-title">Регламент работы: что это и как его составить</div>
+        </a>
+      </div>
+
+      <p class="seo-sublabel" style="margin-top:32px;">Mail.ru — Lifestyle</p>
+      <div class="seo-grid">
+        <a href="https://docs.google.com/document/d/1ob4XaeDQixjRuaM-5hgbJqKy7AEX6DdI6XAsljIGdhk/edit" target="_blank" class="seo-card">
+          <div class="seo-card-source">Уход за животными</div>
+          <div class="seo-card-title">Как ухаживать за кошкой</div>
+        </a>
+        <a href="https://docs.google.com/document/d/14bhVJ_Blb3m8iDbEkUbIhW8fEhHnXGo-UWcq4BZt-U4/edit" target="_blank" class="seo-card">
+          <div class="seo-card-source">Уход за животными</div>
+          <div class="seo-card-title">Топ-10 пород собак-долгожителей</div>
+        </a>
+        <a href="https://docs.google.com/document/d/1hFLe32YZMhAsEGeHPqA31ZEFJKRnDXgJ28bFP5Dip7w/edit" target="_blank" class="seo-card">
+          <div class="seo-card-source">Уход за животными</div>
+          <div class="seo-card-title">Чем кормить кошку мейн-куна в домашних условиях</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="publications">
+  <div class="wrap">
+    <p class="sec-label reveal">Избранные публикации</p>
+    <ul class="pub-list">
+      <li class="pub-item reveal">
+        <span class="pub-source">Sostav</span>
+        <a href="https://www.sostav.ru/publication/zumery-ne-terpyat-pererabotok-i-zvonkov-v-vykhodnye-chto-eto-znachit-dlya-tsifrovykh-komand-81308.html" target="_blank" class="pub-title">Почему зумеры массово уходят с работы из-за звонков в выходные</a>
+      </li>
+      <li class="pub-item reveal">
+        <span class="pub-source">Хайтек</span>
+        <a href="https://hightech.fm/2025/11/09/ai-fail" target="_blank" class="pub-title">Долина смерти: почему 95% ИИ-пилотов терпят крах</a>
+      </li>
+      <li class="pub-item reveal">
+        <span class="pub-source">Бизнес-секреты</span>
+        <a href="https://secrets.tbank.ru/blogi-kompanij/kak-ii-preobrazuet-biznes/" target="_blank" class="pub-title">Как ИИ преобразует российский бизнес</a>
+      </li>
+      <li class="pub-item reveal">
+        <span class="pub-source">Biz360</span>
+        <a href="https://biz360.ru/materials/chem-proshche-tem-luchshe-kakie-uroki-vynes-it-startap-prokhodya-neprostoy-put-masshtabirovaniya" target="_blank" class="pub-title">Чем проще, тем лучше: какие уроки вынес IT-стартап при масштабировании</a>
+      </li>
+      <li class="pub-item reveal">
+        <span class="pub-source">Хайтек</span>
+        <a href="https://hightech.fm/2025/03/21/anti-fraud-2025" target="_blank" class="pub-title">Рекламный фрод: новые схемы обмана и технологии защиты</a>
+      </li>
+      <li class="pub-item reveal">
+        <span class="pub-source">Инвест-Форсайт</span>
+        <a href="https://www.if24.ru/kak-rastet-it-rynok-rossii/" target="_blank" class="pub-title">Как растёт IT-рынок России</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <p class="sec-label reveal">Портфолио</p>
+    <a href="https://docs.google.com/document/d/14pkLEGPI1h1Bb2yRVFUMwYSyFg0_eOnOh-UceWkAoFM/edit" target="_blank" class="portfolio-link reveal">
+      <div>
+        <p class="portfolio-link-label">Копирайтинг · SEO · SMM</p>
+        <p class="portfolio-link-title">Портфолио копирайтера</p>
+        <p class="portfolio-link-desc">Статьи, посты, рассылки, сценарии — всё в одном документе</p>
+      </div>
+      <div class="portfolio-arrow-box">↗</div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <p class="sec-label reveal">Контакт</p>
+    <p class="contact-line reveal">Обсудим<br>ваш <em>проект?</em></p>
+    <a href="https://t.me/Igor66y88" target="_blank" class="contact-tg reveal">
+      ✈&nbsp; Telegram — @Igor66y88
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Бойцов Игорь</p>
+    <p>Санкт-Петербург</p>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const siblings = [...(entry.target.parentElement?.querySelectorAll('.reveal:not(.visible)') || [])];
+        const idx = Math.max(0, siblings.indexOf(entry.target));
+        setTimeout(() => entry.target.classList.add('visible'), idx * 70);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
